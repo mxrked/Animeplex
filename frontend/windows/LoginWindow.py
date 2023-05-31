@@ -1,6 +1,6 @@
 '''
 
-    This is the Remove User Window
+    This is the Login Window
 
 '''
 
@@ -16,13 +16,13 @@ import sys, pyodbc
 
 
 
-class RemoveUserWindow(QMainWindow):
+class LoginWindow(QMainWindow):
 
 
     def __init__(self):
-        super(RemoveUserWindow, self).__init__()
+        super(LoginWindow, self).__init__()
 
-        uic.loadUi("frontend/ui/RemoveUserWindow.ui", self)
+        uic.loadUi("frontend/ui/LoginWindow.ui", self)
 
 
         # Define widgets
@@ -60,11 +60,21 @@ class RemoveUserWindow(QMainWindow):
         :return:
         '''
 
+        from frontend.windows import StartWindow
+
         closeConnectionToDB(self)
-        sys.exit()
+
+        startWindow = StartWindow.StartWindow()
+
+        startWindow.move(self.pos())
+        startWindow.show()
+
+        self.hide()
+
+
 
 
 # initializing app
 app = QApplication(sys.argv)
-UIWindow = RemoveUserWindow()
+UIWindow = LoginWindow()
 app.exec_()

@@ -60,8 +60,16 @@ class AddUserWindow(QMainWindow):
         :return:
         '''
 
+        from frontend.windows import StartWindow
+
         closeConnectionToDB(self)
-        sys.exit()
+
+        startWindow = StartWindow.StartWindow()
+
+        startWindow.move(self.pos())
+        startWindow.show()
+
+        self.hide()
 
 
 # initializing app

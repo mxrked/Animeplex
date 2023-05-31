@@ -8,6 +8,8 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QCursor
 
+from frontend.assets.qrcs.StartWindow import top_bg
+
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
 
@@ -27,10 +29,41 @@ class StartWindow(QMainWindow):
 
         # Define widgets
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
+        self.createBtn = self.findChild(QPushButton, "StartWindow_CreateBtn")
+        self.loginBtn = self.findChild(QPushButton, "StartWindow_LoginBtn")
+        self.exitBtn = self.findChild(QPushButton, "StartWindow_ExitBtn")
+        self.infoBtn = self.findChild(QPushButton, "StartWindow_InfoBtn")
+
 
         # Define functions
         # EX: def doSomething():
         #       print("Test")
+
+        def openAddUserWindow():
+            '''
+            This is used to open the AddUserWindow
+            :return:
+            '''
+
+            from frontend.windows import AddUserWindow
+
+            AddUserWindow.UIWindow.move(self.pos())
+            AddUserWindow.UIWindow.show()
+
+            self.hide()
+
+        def openLoginWindow():
+            '''
+            This is used to open the AddUserWindow
+            :return:
+            '''
+
+            from frontend.windows import LoginWindow
+
+            LoginWindow.UIWindow.move(self.pos())
+            LoginWindow.UIWindow.show()
+
+            self.hide()
 
         def exitApp():
             '''
@@ -43,7 +76,9 @@ class StartWindow(QMainWindow):
 
 
         # Apply functions to/style widgets
-
+        self.createBtn.clicked.connect(openAddUserWindow)
+        self.loginBtn.clicked.connect(openLoginWindow)
+        self.exitBtn.clicked.connect(exitApp)
 
         # Displaying result of program detection
 
