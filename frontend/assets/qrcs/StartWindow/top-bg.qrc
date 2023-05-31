@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>../../imgs/StartWindow/top-bg.jpg</file>
+  </qresource>
+</RCC>
