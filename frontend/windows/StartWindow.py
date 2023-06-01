@@ -9,6 +9,7 @@ from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QCursor
 
 from frontend.assets.qrcs.StartWindow import top_bg
+from frontend.assets.funcs.display_success_error_label import display_success_error_label
 
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
@@ -33,7 +34,19 @@ class StartWindow(QMainWindow):
         self.loginBtn = self.findChild(QPushButton, "StartWindow_LoginBtn")
         self.exitBtn = self.findChild(QPushButton, "StartWindow_ExitBtn")
         self.infoBtn = self.findChild(QPushButton, "StartWindow_InfoBtn")
+        self.bothDetectedLabel = self.findChild(QLabel, "startWindow_BothDetectedLabel")
+        self.bothNotDetectedLabel = self.findChild(QLabel, "startWindow_BothNotFoundLabel")
+        self.sSMSNotDetectedLabel = self.findChild(QLabel, "startWindow_SSMSNotFoundLabel")
+        self.oDBCNotDetectedLabel = self.findChild(QLabel, "startWindow_ODBCNotFoundLabel")
+        self.onlySSMSDriversFoundLabel = self.findChild(QLabel, "startWindow_OnlySSMSDriversFoundLabel")
+        self.failedToConnectLabel = self.findChild(QLabel, "startWindow_FailedDBConnectLabel")
 
+        self.bothDetectedLabel.hide()
+        self.bothNotDetectedLabel.hide()
+        self.sSMSNotDetectedLabel.hide()
+        self.oDBCNotDetectedLabel.hide()
+        self.onlySSMSDriversFoundLabel.hide()
+        self.failedToConnectLabel.hide()
 
         # Define functions
         # EX: def doSomething():
@@ -81,7 +94,7 @@ class StartWindow(QMainWindow):
         self.exitBtn.clicked.connect(exitApp)
 
         # Displaying result of program detection
-
+        display_success_error_label(self)
 
         # Show the app
         self.show()

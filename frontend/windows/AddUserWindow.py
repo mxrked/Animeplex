@@ -27,10 +27,28 @@ class AddUserWindow(QMainWindow):
 
         # Define widgets
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
+        self.goBackBtn = self.findChild(QPushButton, "AddUserWindow_BackBtn")
 
         # Define functions
         # EX: def doSomething():
         #       print("Test")
+
+        def goBack():
+            '''
+            This is used to go back to the Start Window
+            :return:
+            '''
+
+            from frontend.windows import StartWindow
+
+            closeConnectionToDB(self)
+
+            startWindow = StartWindow.StartWindow()
+
+            startWindow.move(self.pos())
+            startWindow.show()
+
+            self.hide()
 
         def exitApp():
             '''
@@ -43,6 +61,7 @@ class AddUserWindow(QMainWindow):
 
 
         # Apply functions to/style widgets
+        self.goBackBtn.clicked.connect(goBack)
 
 
         # Displaying result of program detection
