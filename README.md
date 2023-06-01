@@ -56,6 +56,6 @@ SETTING UP THE PROGRAM
    - "SSMS was not found!." = This means SSMS was not found. You must install it in the proper location for it to be picked up (Perferred to install in its default location via wizard)
    - "Only SSMS and Drivers were found, not database and table." = This means half of the requirements are found but the database and table needed for the program is not found. (Steps 3-5 will show you how to set that up)
 
-![Image of the program running properly](./frontend/assets/imgs/runningprogram.png)                                                                    
+![Image of the program running properly](./frontend/assets/imgs/all-requirements-found.png)                                                                    
                                
 
