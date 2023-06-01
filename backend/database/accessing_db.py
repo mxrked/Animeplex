@@ -35,18 +35,17 @@ def connectToDB(self):
         print("Failed to/Not connect to the database.")
 
         # Displaying failed connection error
-        # self.failedToConnectLabel.setFixedHeight(50)
+        self.failedToConnectLabel.setFixedWidth(650)
+        self.failedToConnectLabel.setFixedHeight(50)
 
         # Disabling buttons
-        # self.addAccountBtn.setEnabled(False)
-        # self.addAccountBtn.setStyleSheet(
-        #     "QPushButton { background-color: rgba(121, 182, 0, 0.3); border-image: none; border: none; color: rgba(0,0,0,0.4); }")
-        # self.removeAccountBtn.setEnabled(False)
-        # self.removeAccountBtn.setStyleSheet(
-        #     "QPushButton { background-color: rgba(121, 182, 0, 0.3); border-image: none; border: none; color: rgba(0,0,0,0.4); }")
-        # self.viewAccountsBtn.setEnabled(False)
-        # self.viewAccountsBtn.setStyleSheet(
-        #     "QPushButton { background-color: rgba(121, 182, 0, 0.3); border-image: none; border: none; color: rgba(0,0,0,0.4); }")
+        self.createBtn.setEnabled(False)
+        self.createBtn.setStyleSheet(
+            "QPushButton { background-color: rgba(18, 18, 18, 0.3); border-image: none; border: none; color: rgba(0,0,0,0.4); }")
+        self.loginBtn.setEnabled(False)
+        self.loginBtn.setStyleSheet(
+            "QPushButton { background-color: rgba(18, 18, 18, 0.3); border-image: none; border: none; color: rgba(0,0,0,0.4); }")
+
 
 def closeConnectionToDB(self):
     '''
