@@ -8,6 +8,8 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QCursor
 
+from frontend.assets.variables.arrays import *
+
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
 
@@ -27,10 +29,31 @@ class UserHubWindow(QMainWindow):
 
         # Define widgets
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
+        self.logoutBtn = self.findChild(QPushButton, "UserHubWindow_LogoutBtn")
+        self.emailLabel = self.findChild(QLabel, "UserHubWindow_EmailLabel")
 
         # Define functions
         # EX: def doSomething():
         #       print("Test")
+
+        def logout():
+            '''
+            This is used to logout the user
+            :return:
+            '''
+
+            from frontend.windows import StartWindow
+
+            current_user_based_on_ID.clear()
+
+            closeConnectionToDB(self)
+
+            startWindow = StartWindow.StartWindow()
+
+            startWindow.move(self.pos())
+            startWindow.show()
+
+            self.hide()
 
         def exitApp():
             '''
@@ -43,7 +66,7 @@ class UserHubWindow(QMainWindow):
 
 
         # Apply functions to/style widgets
-
+        self.logoutBtn.clicked.connect(logout)
 
         # Displaying result of program detection
 
@@ -60,8 +83,20 @@ class UserHubWindow(QMainWindow):
         :return:
         '''
 
+        from frontend.windows import StartWindow
+
+        current_user_based_on_ID.clear()
+
         closeConnectionToDB(self)
-        sys.exit()
+
+        startWindow = StartWindow.StartWindow()
+
+        startWindow.move(self.pos())
+        startWindow.show()
+
+        self.hide()
+
+
 
 
 # initializing app
