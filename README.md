@@ -54,7 +54,7 @@ SETTING UP THE PROGRAM
    - "Both SSMS and ODBC were not found! Refer to the README.md for installation." = This means that neither SSMS or ODBC Driver 17 were found. You must install both in the proper location for it to be picked up (Perferred to install in there default locations via wizard)
    - "ODBC was not found! Download ODBC Driver 17 for SQL Server." = This means that ODBC Driver 17 was not found. You must install it in the proper location for it to be picked up (Perferred to install in its default location via wizard)
    - "SSMS was not found!." = This means SSMS was not found. You must install it in the proper location for it to be picked up (Perferred to install in its default location via wizard)
-   - "Only SSMS and Drivers were found, not database and table." = This means half of the requirements are found but the database and table needed for the program is not found. (Steps 3-5 will show you how to set that up)
+   - "Only SSMS and Drivers were found, not database and tables." = This means half of the requirements are found but the database and table needed for the program is not found. (Steps 3-5 will show you how to set that up)
 
 ![Image of the program running properly](./frontend/assets/imgs/all-requirements-found.png)                                                                    
                                
