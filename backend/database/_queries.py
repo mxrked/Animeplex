@@ -6,36 +6,37 @@
 
 from backend.database.accessing_db import connectToDB
 
+
 import pyodbc
 
 
 # Inserters
-def insert_new_user(self, userEmail, userPassword, userWatched, userFavorited):
-    '''
-    This is used to create/insert a new user
-    :param self: self
-    :param userEmail: str
-    :param userPassword: str
-    :param userWatched: array
-    :param userFavorited: array
-    :return:
-    '''
-
-    connection = connectToDB(self)
-    cursor = connection.cursor()
-
-    # Keeping the ID incremented correctly
-    cursor.execute("SELECT MAX(ID) FROM Users")
-    max_id = cursor.fetchone()[0]
-    new_id = max_id + 1 if max_id else 1
-
-    # Inserting the new user
-    insert_new_user = "INSERT INTO Users (ID, User_Email, User_Password, User_Watched_Array, User_Favorited_Array) VALUES (?, ?, ?, ?, ?)"
-    cursor.execute(insert_new_user, (new_id, userEmail, userPassword, userWatched, userFavorited))
-    connection.commit()
-
-    cursor.close()
-    connection.close()
+# def insert_new_user(self, userEmail, userPassword, userWatched, userFavorited):
+#     '''
+#     This is used to create/insert a new user
+#     :param self: self
+#     :param userEmail: str
+#     :param userPassword: str
+#     :param userWatched: array
+#     :param userFavorited: array
+#     :return:
+#     '''
+#
+#     connection = connectToDB(self)
+#     cursor = connection.cursor()
+#
+#     # Keeping the ID incremented correctly
+#     cursor.execute("SELECT MAX(ID) FROM Users")
+#     max_id = cursor.fetchone()[0]
+#     new_id = max_id + 1 if max_id else 1
+#
+#     # Inserting the new user
+#     insert_new_user = "INSERT INTO Users (ID, User_Email, User_Password, User_Watched_Array, User_Favorited_Array) VALUES (?, ?, ?, ?, ?)"
+#     cursor.execute(insert_new_user, (new_id, userEmail, userPassword, userWatched, userFavorited))
+#     connection.commit()
+#
+#     cursor.close()
+#     connection.close()
 
 # Removers
 def remove_user(self, userEmail, userPassword):
