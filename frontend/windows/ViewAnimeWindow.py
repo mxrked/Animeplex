@@ -32,6 +32,19 @@ class ViewAnimeWindow(QMainWindow):
         # EX: def doSomething():
         #       print("Test")
 
+        def openUserHub():
+            '''
+            This is used to open the UserHubWindow
+            :return:
+            '''
+
+            from frontend.windows import UserHubWindow
+
+            UserHubWindow.UIWindow.move(self.pos())
+            UserHubWindow.UIWindow.show()
+
+            self.hide()
+
         def exitApp():
             '''
             This is used to close the app
@@ -61,7 +74,13 @@ class ViewAnimeWindow(QMainWindow):
         '''
 
         closeConnectionToDB(self)
-        sys.exit()
+
+        from frontend.windows import UserHubWindow
+
+        UserHubWindow.UIWindow.move(self.pos())
+        UserHubWindow.UIWindow.show()
+
+        self.hide()
 
 
 # initializing app

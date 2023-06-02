@@ -31,6 +31,9 @@ class UserHubWindow(QMainWindow):
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
         self.logoutBtn = self.findChild(QPushButton, "UserHubWindow_LogoutBtn")
         self.emailLabel = self.findChild(QLabel, "UserHubWindow_EmailLabel")
+        self.viewAnimeBtn = self.findChild(QPushButton, "UserHubWindow_ViewAllAnimeBtn")
+        self.watchedAnimeBtn = self.findChild(QPushButton, "UserHubWindow_ViewWatchedAnimeBtn")
+        self.favoriteAnimeBtn = self.findChild(QPushButton, "UserHubWindow_ViewFavoritedAnimeBtn")
 
         # Define functions
         # EX: def doSomething():
@@ -55,6 +58,45 @@ class UserHubWindow(QMainWindow):
 
             self.hide()
 
+        def openViewAnimeWindow():
+            '''
+            This is used to open the ViewAnimeWindow
+            :return:
+            '''
+
+            from frontend.windows import ViewAnimeWindow
+
+            ViewAnimeWindow.UIWindow.move(self.pos())
+            ViewAnimeWindow.UIWindow.show()
+
+            self.hide()
+
+        def openWatchedAnimeWindow():
+            '''
+            This is used to open the WatchedWindow
+            :return:
+            '''
+
+            from frontend.windows import WatchedWindow
+
+            WatchedWindow.UIWindow.move(self.pos())
+            WatchedWindow.UIWindow.show()
+
+            self.hide()
+
+        def openFavoritedAnimeWindow():
+            '''
+            This is used to open the FavoritedWindow
+            :return:
+            '''
+
+            from frontend.windows import FavoritedWindow
+
+            FavoritedWindow.UIWindow.move(self.pos())
+            FavoritedWindow.UIWindow.show()
+
+            self.hide()
+
         def exitApp():
             '''
             This is used to close the app
@@ -67,6 +109,9 @@ class UserHubWindow(QMainWindow):
 
         # Apply functions to/style widgets
         self.logoutBtn.clicked.connect(logout)
+        self.viewAnimeBtn.clicked.connect(openViewAnimeWindow)
+        self.watchedAnimeBtn.clicked.connect(openWatchedAnimeWindow)
+        self.favoriteAnimeBtn.clicked.connect(openFavoritedAnimeWindow)
 
         # Displaying result of program detection
 
