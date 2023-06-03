@@ -4,8 +4,8 @@
 
 '''
 
-from backend.database.accessing_db import connectToDB
-
+#from backend.database.accessing_db import connectToDB
+from frontend.assets.classes.connection import db_connection
 
 import pyodbc
 
@@ -31,33 +31,57 @@ import pyodbc
 #     new_id = max_id + 1 if max_id else 1
 #
 #     # Inserting the new user
-#     insert_new_user = "INSERT INTO Users (ID, User_Email, User_Password, User_Watched_Array, User_Favorited_Array) VALUES (?, ?, ?, ?, ?)"
+#     insert_user = "INSERT INTO Users (ID, User_Email, User_Password, User_Watched_Array, User_Favorited_Array) VALUES (?, ?, ?, ?, ?)"
 #     cursor.execute(insert_new_user, (new_id, userEmail, userPassword, userWatched, userFavorited))
 #     connection.commit()
 #
 #     cursor.close()
 #     connection.close()
-
-# Removers
-def remove_user(self, userEmail, userPassword):
+def insert_new_anime(self, animeName, animeWatched, animeFavorited):
     '''
-    This is used to remove a user
+    This is used to insert/create a anime entry for the Anime table
     :param self: self
-    :param userEmail: str
-    :param userPassword: str
+    :param animeName: str
+    :param animeWatched: boolean
+    :param animeFavorited: boolean
     :return:
     '''
 
-    connection = connectToDB(self)
+    # connection = connectToDB(self)
+
+    connection = db_connection.connectToDB()
     cursor = connection.cursor()
 
-    # Removing the user
-    removing_user = "DELETE FROM Users WHERE User_Email = ? AND User_Password = ?"
-    cursor.execute(removing_user, (userEmail, userPassword))
+    # Inserting the new anime
+    insert_anime = "INSERT INTO Anime (Anime_Name, Anime_Watched, Anime_Favorited) VALUES (?, ?, ?)"
+    cursor.execute(insert_anime, (animeName, int(animeWatched), int(animeFavorited)))
     connection.commit()
 
     cursor.close()
     connection.close()
+
+
+# Removers
+# def remove_user(self, userEmail, userPassword):
+#     '''
+#     This is used to remove a user
+#     :param self: self
+#     :param userEmail: str
+#     :param userPassword: str
+#     :return:
+#     '''
+#
+#     connection = connectToDB(self)
+#     cursor = connection.cursor()
+#
+#     # Removing the user
+#     removing_user = "DELETE FROM Users WHERE User_Email = ? AND User_Password = ?"
+#     cursor.execute(removing_user, (userEmail, userPassword))
+#     connection.commit()
+#
+#     cursor.close()
+#     connection.close()
+
 
 
 # Getters
