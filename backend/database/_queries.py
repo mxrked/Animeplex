@@ -11,32 +11,6 @@ import pyodbc
 
 
 # Inserters
-# def insert_new_user(self, userEmail, userPassword, userWatched, userFavorited):
-#     '''
-#     This is used to create/insert a new user
-#     :param self: self
-#     :param userEmail: str
-#     :param userPassword: str
-#     :param userWatched: array
-#     :param userFavorited: array
-#     :return:
-#     '''
-#
-#     connection = connectToDB(self)
-#     cursor = connection.cursor()
-#
-#     # Keeping the ID incremented correctly
-#     cursor.execute("SELECT MAX(ID) FROM Users")
-#     max_id = cursor.fetchone()[0]
-#     new_id = max_id + 1 if max_id else 1
-#
-#     # Inserting the new user
-#     insert_user = "INSERT INTO Users (ID, User_Email, User_Password, User_Watched_Array, User_Favorited_Array) VALUES (?, ?, ?, ?, ?)"
-#     cursor.execute(insert_new_user, (new_id, userEmail, userPassword, userWatched, userFavorited))
-#     connection.commit()
-#
-#     cursor.close()
-#     connection.close()
 def insert_new_anime(self, animeName, animeWatched, animeFavorited):
     '''
     This is used to insert/create a anime entry for the Anime table
@@ -49,39 +23,28 @@ def insert_new_anime(self, animeName, animeWatched, animeFavorited):
 
     # connection = connectToDB(self)
 
-    connection = db_connection.connectToDB()
+    connection = db_connection
     cursor = connection.cursor()
 
-    # Inserting the new anime
+    # Preventing duplicate data
+    check_current_anime = "SELECT COUNT(*) FROM Anime WHERE Anime_Name = ?"
+    cursor.execute(check_current_anime, (animeName))
+    check_count = cursor.fetchone()[0]
+
+    if check_count > 0:
+        print(f"Anime with name '{animeName}' already exists.")
+        return
+
+    # Inserting the new anime (IF THERE ISNT A DUPLICATE)
     insert_anime = "INSERT INTO Anime (Anime_Name, Anime_Watched, Anime_Favorited) VALUES (?, ?, ?)"
-    cursor.execute(insert_anime, (animeName, int(animeWatched), int(animeFavorited)))
+    cursor.execute(insert_anime, (animeName, animeWatched, animeFavorited))
+
+    print(cursor)
+
     connection.commit()
 
-    cursor.close()
-    connection.close()
-
-
-# Removers
-# def remove_user(self, userEmail, userPassword):
-#     '''
-#     This is used to remove a user
-#     :param self: self
-#     :param userEmail: str
-#     :param userPassword: str
-#     :return:
-#     '''
-#
-#     connection = connectToDB(self)
-#     cursor = connection.cursor()
-#
-#     # Removing the user
-#     removing_user = "DELETE FROM Users WHERE User_Email = ? AND User_Password = ?"
-#     cursor.execute(removing_user, (userEmail, userPassword))
-#     connection.commit()
-#
-#     cursor.close()
-#     connection.close()
-
+    # cursor.close()
+    # connection.close()
 
 
 # Getters
@@ -130,4 +93,3 @@ def get_specific_user_array(userID, arrayName):
         specific_array = "SELECT " + arrayName + " FROM Users WHERE ID = " + userID
 
         return  specific_array
-
