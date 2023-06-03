@@ -68,3 +68,4 @@ def closeConnectionToDB(self):
 
     except pyodbc.Error as e:
         pass
+
