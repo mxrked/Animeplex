@@ -29,7 +29,7 @@
    <string notr="true">background-color: rgb(50, 50, 50)</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="StartWindow_BottomFrame">
+   <widget class="QFrame" name="ViewAnimeWindow_MainFrame">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -232,31 +232,51 @@ QPushButton::hover {
       </item>
      </layout>
     </widget>
-    <widget class="QFrame" name="ViewAnimeWindow_AnimeFrame">
+    <widget class="QScrollArea" name="scrollArea">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>340</y>
-       <width>861</width>
+       <x>40</x>
+       <y>330</y>
+       <width>821</width>
        <height>641</height>
       </rect>
      </property>
-     <property name="styleSheet">
-      <string notr="true">QFrame {
-	background-color: rgb(223, 223, 223)
-}</string>
+     <property name="widgetResizable">
+      <bool>true</bool>
      </property>
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4">
-      <item>
-       <layout class="QVBoxLayout" name="ViewAnimeWindow_AnimeFrameLayout"/>
-      </item>
-     </layout>
+     <widget class="QWidget" name="scrollAreaWidgetContents">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>802</width>
+        <height>1218</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QFrame" name="ViewAnimeWindow_AnimeFrame">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>1200</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QVBoxLayout" name="ViewAnimeWindow_AnimeFrameLayout"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
     </widget>
    </widget>
   </widget>
