@@ -1,5 +1,6 @@
 
-from backend.database.accessing_db import connectToDB
+from frontend.assets.classes.connection import db_connection
+# from backend.database.accessing_db import connectToDB
 
 import pyodbc
 import os
@@ -39,7 +40,7 @@ def checking_database_and_tables(self):
     :return: boolean
     '''
 
-    connection = connectToDB(self)
+    connection = db_connection
     cursor = connection.cursor()
 
     # Checking if database exist
