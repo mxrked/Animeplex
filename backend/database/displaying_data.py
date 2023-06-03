@@ -4,7 +4,9 @@
 
 '''
 
-from backend.database.accessing_db import connectToDB
+from frontend.assets.classes.connection import db_connection
+
+# from backend.database.accessing_db import connectToDB
 from backend.database._queries import *
 
 def display_all_users(self):
@@ -14,7 +16,7 @@ def display_all_users(self):
     :return:
     '''
 
-    connection = connectToDB(self)
+    connection = db_connection
     cursor = connection.cursor()
 
     try:
@@ -37,7 +39,7 @@ def display_all_anime(self):
     :return:
     '''
 
-    connection = connectToDB(self)
+    connection = db_connection
     cursor = connection.cursor()
 
     try:
