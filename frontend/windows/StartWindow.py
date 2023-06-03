@@ -10,12 +10,13 @@ from PyQt5.QtGui import QCursor
 
 from frontend.assets.qrcs.StartWindow import top_bg
 from frontend.assets.funcs.display_success_error_label import display_success_error_label
+from frontend.assets.variables.arrays import active_connections
 
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
 
 
-import sys, pyodbc
+import sys, pyodbc, atexit
 
 
 
@@ -83,7 +84,10 @@ class StartWindow(QMainWindow):
             This is used to close the app
             :return:
             '''
-            closeConnectionToDB(self)
+
+            atexit.register(cleanup_connections) # Making the function run ALWAYS when exiting
+
+            #closeConnectionToDB(self)
             sys.exit()
 
 
@@ -100,7 +104,6 @@ class StartWindow(QMainWindow):
         self.show()
 
 
-
     def closeEvent(self, event):
         '''
         This is used to close the window on the red X
@@ -108,8 +111,19 @@ class StartWindow(QMainWindow):
         :return:
         '''
 
-        closeConnectionToDB(self)
+        atexit.register(cleanup_connections)
+        # closeConnectionToDB(self)
         sys.exit()
+
+
+def cleanup_connections():
+    '''
+    This is used to close all connections
+    :return:
+    '''
+
+    for connection in active_connections:
+        connection.close()
 
 
 # initializing app
