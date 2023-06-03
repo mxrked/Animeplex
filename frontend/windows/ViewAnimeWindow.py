@@ -29,6 +29,7 @@ class ViewAnimeWindow(QMainWindow):
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
         self.backBtn = self.findChild(QPushButton, "ViewAnimeWindow_BackBtn")
         self.emailLabel = self.findChild(QLabel, "ViewAnimeWindow_EmailLabel")
+        self.animeFrameLayout = self.findChild(QVBoxLayout, "ViewAnimeWindow_AnimeFrameLayout")
 
         # Define functions
         # EX: def doSomething():
@@ -41,6 +42,8 @@ class ViewAnimeWindow(QMainWindow):
             '''
 
             from frontend.windows import UserHubWindow
+
+            closeConnectionToDB(self)
 
             UserHubWindow.UIWindow.move(self.pos())
             UserHubWindow.UIWindow.show()

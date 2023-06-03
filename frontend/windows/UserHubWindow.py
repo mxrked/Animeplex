@@ -10,6 +10,7 @@ from PyQt5.QtGui import QCursor
 
 from frontend.assets.variables.arrays import *
 from frontend.assets.classes.connection import db_connection
+from frontend.assets.funcs.return_funcs import *
 
 from backend.database.creating_data import create_anime_data
 from backend.database.accessing_db import closeConnectionToDB
@@ -72,8 +73,15 @@ class UserHubWindow(QMainWindow):
             connection = db_connection
 
             create_anime_data(self, connection)
+            get_anime_names = returnAnimeNames(connection.cursor())
+
 
             ViewAnimeWindow.UIWindow.emailLabel.setText(self.emailLabel.text()) # Setting the email label text
+
+            # Adding the content to the frame
+            for anime_name in get_anime_names:
+                label = QLabel(anime_name)
+                ViewAnimeWindow.UIWindow.animeFrameLayout.addWidget(label)
 
             ViewAnimeWindow.UIWindow.move(self.pos())
             ViewAnimeWindow.UIWindow.show()
