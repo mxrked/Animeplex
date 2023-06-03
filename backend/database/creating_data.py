@@ -9,7 +9,7 @@ from frontend.assets.classes.connection import db_connection
 # from backend.database.accessing_db import connectToDB
 from backend.database._queries import insert_new_anime
 
-def create_anime_data(self, animeNames, connection):
+def create_anime_data(self, connection):
     '''
     This is used to create anime table data
     :return:
@@ -17,8 +17,8 @@ def create_anime_data(self, animeNames, connection):
 
     cursor = connection.cursor()
 
-    watched = False
-    favorited = False
+    watched = 0
+    favorited = 0
 
     # Checking if there isnt any watched or favorited anime before creation
     check_watched_and_favorited = "SELECT COUNT(*) FROM Anime WHERE Anime_Watched = 1 OR Anime_Favorited = 1"
@@ -33,14 +33,14 @@ def create_anime_data(self, animeNames, connection):
     else:
 
         # Adding the data
+        try:
 
-        for animeName in animeNames:
+            insert_new_anime(self, "Demon Slayer", watched, favorited)
+            insert_new_anime(self, "Black Clover", watched, favorited)
+            insert_new_anime(self, "Jojo's Bizarre Adventure", watched, favorited)
 
-            try:
+        except Exception as e:
+            print("Error retrieving indexes. Might be that there are no indexes.")
 
-                insert_new_anime(self, animeName, watched, favorited)
-
-            except Exception as e:
-                print("Error retrieving indexes. Might be that there are no indexes.")
 
 
