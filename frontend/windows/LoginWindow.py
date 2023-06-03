@@ -11,6 +11,7 @@ from PyQt5.QtGui import QCursor
 from frontend.assets.funcs.input_checks import *
 from frontend.assets.funcs.return_funcs import *
 from frontend.assets.variables.arrays import *
+from frontend.assets.classes.connection import db_connection
 
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
@@ -97,7 +98,8 @@ class LoginWindow(QMainWindow):
             :return:
             '''
 
-            connection = connectToDB(self)
+            # connection = connectToDB(self)
+            connection = db_connection
             cursor = connection.cursor()
 
             emailText = self.emailLE.text()

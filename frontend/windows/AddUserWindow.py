@@ -8,6 +8,7 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QCursor
 
+from frontend.assets.classes.connection import db_connection
 from frontend.assets.funcs.input_checks import *
 
 from backend.database._queries import *
@@ -90,7 +91,7 @@ class AddUserWindow(QMainWindow):
             :return:
             '''
 
-            connection = connectToDB(self)
+            connection = db_connection
             cursor = connection.cursor()
 
             emailText = self.emailLE.text()

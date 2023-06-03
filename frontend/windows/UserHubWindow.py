@@ -9,7 +9,9 @@ from PyQt5 import uic, QtCore, QtGui
 from PyQt5.QtGui import QCursor
 
 from frontend.assets.variables.arrays import *
+from frontend.assets.classes.connection import db_connection
 
+from backend.database.creating_data import create_anime_data
 from backend.database.accessing_db import closeConnectionToDB
 from backend.database.displaying_data import *
 
@@ -64,7 +66,16 @@ class UserHubWindow(QMainWindow):
             :return:
             '''
 
+
             from frontend.windows import ViewAnimeWindow
+
+            connection = db_connection
+
+            animeNames = ["Demon Slayer", "Black Clover", "JJBA"]
+
+            create_anime_data(self, animeNames, connection)
+
+            ViewAnimeWindow.UIWindow.emailLabel.setText(self.emailLabel.text()) # Setting the email label text
 
             ViewAnimeWindow.UIWindow.move(self.pos())
             ViewAnimeWindow.UIWindow.show()

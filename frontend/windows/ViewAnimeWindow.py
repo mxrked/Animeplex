@@ -27,6 +27,8 @@ class ViewAnimeWindow(QMainWindow):
 
         # Define widgets
         # EX: self.testWidget = self.findChild(QLineEdit, "startWindow_TestLE")
+        self.backBtn = self.findChild(QPushButton, "ViewAnimeWindow_BackBtn")
+        self.emailLabel = self.findChild(QLabel, "ViewAnimeWindow_EmailLabel")
 
         # Define functions
         # EX: def doSomething():
@@ -56,7 +58,7 @@ class ViewAnimeWindow(QMainWindow):
 
 
         # Apply functions to/style widgets
-
+        self.backBtn.clicked.connect(openUserHub)
 
         # Displaying result of program detection
 
