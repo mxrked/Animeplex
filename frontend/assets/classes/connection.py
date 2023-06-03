@@ -6,6 +6,8 @@
 
 # from backend.database.accessing_db import connectToDB
 
+from frontend.assets.variables.arrays import active_connections
+
 import pyodbc
 
 class Connection:
@@ -27,6 +29,9 @@ class Connection:
 
             if self.connect:
                 print("Connected to the database.")
+
+                active_connections.append(self.connect) # Keeps track of the active connections for later closing
+
                 return self.connect
 
         except pyodbc.Error as e:
