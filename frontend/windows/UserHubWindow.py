@@ -71,14 +71,14 @@ class UserHubWindow(QMainWindow):
 
             connection = db_connection
 
-            animeNames = ["Demon Slayer", "Black Clover", "JJBA"]
-
-            create_anime_data(self, animeNames, connection)
+            create_anime_data(self, connection)
 
             ViewAnimeWindow.UIWindow.emailLabel.setText(self.emailLabel.text()) # Setting the email label text
 
             ViewAnimeWindow.UIWindow.move(self.pos())
             ViewAnimeWindow.UIWindow.show()
+
+            display_all_anime(self)
 
             self.hide()
 
