@@ -4,4 +4,5 @@
 
 '''
 
+active_connections = []
 current_user_based_on_ID = [False]
