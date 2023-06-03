@@ -4,6 +4,8 @@
 
 '''
 
+from backend.database._queries import get_all_anime_names
+
 def returnUserID(cursor, emailText, passwordText):
     '''
     This is used to return the primary key
@@ -65,3 +67,17 @@ def returnUserEmail(cursor, emailText, passwordText):
 
     else:
         print("Could not get the ID")
+
+def returnAnimeNames(cursor):
+    '''
+    This is used to return the anime names
+    :param cursor: connections
+    :return: anime_names
+    '''
+
+    cursor.execute(get_all_anime_names)
+    rows = cursor.fetchall()
+
+    anime_names = [row.Anime_Name for row in rows]
+
+    return anime_names
