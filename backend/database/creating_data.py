@@ -38,6 +38,7 @@ def create_anime_data(self, connection):
             insert_new_anime(self, "Demon Slayer", watched, favorited)
             insert_new_anime(self, "Black Clover", watched, favorited)
             insert_new_anime(self, "Jojo's Bizarre Adventure", watched, favorited)
+            insert_new_anime(self, "Attack On Titan", watched, favorited)
 
         except Exception as e:
             print("Error retrieving indexes. Might be that there are no indexes.")
