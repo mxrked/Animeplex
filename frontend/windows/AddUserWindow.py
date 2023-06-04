@@ -97,8 +97,8 @@ class AddUserWindow(QMainWindow):
             emailText = self.emailLE.text()
             passwordText = self.passwordLE.text()
 
-            watched_array = None
-            favorites_array = None
+            watched_array = ""
+            favorites_array = ""
 
             # Validation checks
             inputs = [self.emailLE, self.passwordLE, self.reEnterPasswordLE]
