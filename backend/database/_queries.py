@@ -7,7 +7,7 @@
 #from backend.database.accessing_db import connectToDB
 from frontend.assets.classes.connection import db_connection
 
-import pyodbc
+import pyodbc, json
 
 
 # Inserters
@@ -46,6 +46,52 @@ def insert_new_anime(self, animeName, animeWatched, animeFavorited):
     # cursor.close()
     # connection.close()
 
+# Updaters
+def update_anime_watched(self, animeName, status):
+    '''
+    This is used to update the anime as watched
+    :param self: self
+    :param animeName: str
+    :return:
+    '''
+
+    connection = db_connection
+    cursor = connection.cursor()
+
+    query = "UPDATE Anime SET Anime_Watched = " + str(status) + " WHERE Anime_Name = ?"
+    cursor.execute(query, (animeName))
+    connection.commit()
+def update_anime_favorited(self, animeName, status):
+    '''
+    This is used to update the anime as favorited
+    :param self: self
+    :param animeName: str
+    :return:
+    '''
+
+    connection = db_connection
+    cursor = connection.cursor()
+
+    query = "UPDATE Anime SET Anime_Favorited = " + str(status) + " WHERE Anime_Name = ?"
+    cursor.execute(query, (animeName))
+    connection.commit()
+def update_user_watched_array(self, userID, watched_animes):
+    '''
+    This is used to update the users watched array
+    :param self: self
+    :param userID: int
+    :param watched_array: array
+    :return:
+    '''
+
+
+    connection = db_connection
+    cursor = connection.cursor()
+
+    query = "UPDATE Users SET User_Watched_Array = ? WHERE ID = ?"
+    cursor.execute(query, (watched_animes, userID))
+
+    connection.commit()
 
 # Getters
 get_all_users = "SELECT * FROM Users"
@@ -58,38 +104,38 @@ get_all_anime_not_watched = "SELECT * FROM Anime WHERE Anime_Watched = 0"
 get_all_anime_favorited = "SELECT * FROM Anime WHERE Anime_Favorited = 1"
 get_all_anime_not_favorited = "SELECT * FROM Anime WHERE Anime_Favorited = 0"
 
-def get_specific_user_array(userID, arrayName):
-    '''
-    This is used to return a specific user array
-    :param userID: int
-    :param arrayName: str
-    :return: specific_array
-    '''
-
-    # Making sure the userID parameter is a int
-    if not isinstance(userID, int):
-
-        raise ValueError("userID must be an integer.")
-
-    if isinstance(userID, int):
-
-        validUserIDType = True
-
-
-    # Making sure the arrayName parameter is a str
-    if not isinstance(arrayName, str):
-
-        raise ValueError("arrayName must be an str.")
-
-    if isinstance(arrayName, str):
-
-        validArrayNameType = True
-
-
-
-    # Getting the array after valid type checks
-    if validUserIDType and validArrayNameType:
-
-        specific_array = "SELECT " + arrayName + " FROM Users WHERE ID = " + userID
-
-        return  specific_array
+# def get_specific_user_array(userID, arrayName):
+#     '''
+#     This is used to return a specific user array
+#     :param userID: int
+#     :param arrayName: str
+#     :return: specific_array
+#     '''
+#
+#     # Making sure the userID parameter is a int
+#     if not isinstance(userID, int):
+#
+#         raise ValueError("userID must be an integer.")
+#
+#     if isinstance(userID, int):
+#
+#         validUserIDType = True
+#
+#
+#     # Making sure the arrayName parameter is a str
+#     if not isinstance(arrayName, str):
+#
+#         raise ValueError("arrayName must be an str.")
+#
+#     if isinstance(arrayName, str):
+#
+#         validArrayNameType = True
+#
+#
+#
+#     # Getting the array after valid type checks
+#     if validUserIDType and validArrayNameType:
+#
+#         specific_array = "SELECT " + arrayName + " FROM Users WHERE ID = " + str(userID)
+#
+#         return specific_array
