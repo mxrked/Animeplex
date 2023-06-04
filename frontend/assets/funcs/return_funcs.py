@@ -81,3 +81,41 @@ def returnAnimeNames(cursor):
     anime_names = [row.Anime_Name for row in rows]
 
     return anime_names
+
+def returnUserWatchedArray(cursor, userID):
+    '''
+        This is used to return the email
+        :param cursor: connection
+        :param userID: int
+        :return: watched_array
+        '''
+
+    query = "SELECT User_Watched_Array FROM Users WHERE ID = ?"
+
+    # Bind the ID value to the query parameters
+    cursor.execute(query, userID)
+
+    # Fetch the result
+    result = cursor.fetchone()
+
+    # Check if a result was found
+    if result:
+        user_watched_array = result[0]
+        print(user_watched_array)
+
+        return user_watched_array
+
+    else:
+        print(f"No entry found with ID {userID}")
+
+def returnConvertedToArray(values):
+    '''
+    This is used to return a converted array
+    :param values: str
+    :return: converted_to_array
+    '''
+
+    if len(values) > 0:
+        converted_to_array = values.split(", ")
+
+        return converted_to_array
