@@ -4,5 +4,9 @@
 
 '''
 
+watched_cbs = []
+favorited_cbs = []
+checked_watched = []
+checked_favorited = []
 active_connections = []
 current_user_based_on_ID = [False]
